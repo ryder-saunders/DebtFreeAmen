@@ -1,0 +1,112 @@
+@import "tailwindcss";
+
+:root {
+  --background: #ffffff;
+  --foreground: #33373d;
+}
+
+@theme inline {
+  --color-background: var(--background);
+  --color-foreground: var(--foreground);
+  --font-sans: var(--font-geist-sans);
+  --font-mono: var(--font-geist-mono);
+
+  --color-brand-tan: #f4f2ed;
+  --color-brand-blue: #213949;
+  --color-brand-accent: #b57b58;
+  --color-brand-grey-light: #9aa0a9;
+  --color-brand-grey-dark: #33373d;
+  --color-brand-grey-mid: #7a7a7a;
+}
+
+html {
+  scroll-behavior: smooth;
+}
+
+body {
+  background: var(--background);
+  color: var(--foreground);
+  font-family: var(--font-geist-sans), Arial, Helvetica, sans-serif;
+  overflow-x: clip;
+}
+
+.hero-field {
+  background: color-mix(in srgb, var(--color-brand-blue) 82%, black);
+  isolation: isolate;
+  position: relative;
+}
+
+.hero-field::before {
+  background:
+    linear-gradient(
+      90deg,
+      rgb(8 21 31 / 94%) 0%,
+      rgb(10 24 35 / 82%) 48%,
+      rgb(10 24 35 / 48%) 100%
+    ),
+    linear-gradient(180deg, rgb(6 18 28 / 28%), rgb(6 18 28 / 54%));
+  content: "";
+  inset: 0;
+  pointer-events: none;
+  position: absolute;
+  z-index: 1;
+}
+
+.hero-field > * {
+  position: relative;
+  z-index: 2;
+}
+
+.hero-background {
+  background-position: center;
+  background-repeat: no-repeat;
+  background-size: cover;
+  inset: 0;
+  pointer-events: none;
+  position: absolute;
+  z-index: 0;
+}
+
+.glow-cta {
+  box-shadow:
+    0 0 0 1px rgb(255 255 255 / 16%),
+    0 0 22px rgb(181 123 88 / 20%),
+    0 0 28px rgb(255 255 255 / 22%),
+    0 14px 34px rgb(0 0 0 / 18%);
+}
+
+@media (max-width: 640px) {
+  .hero-field::before {
+    background:
+      linear-gradient(
+        180deg,
+        rgb(7 20 30 / 54%) 0%,
+        rgb(7 20 30 / 70%) 58%,
+        color-mix(in srgb, var(--color-brand-blue) 82%, black) 100%
+      ),
+      linear-gradient(90deg, rgb(7 20 30 / 64%), rgb(7 20 30 / 34%));
+    height: clamp(36rem, 78vh, 48rem);
+    inset: 0 0 auto;
+  }
+
+  .hero-background {
+    background-position: 58% center;
+    height: clamp(36rem, 78vh, 48rem);
+    inset: 0 0 auto;
+  }
+}
+
+@media (prefers-reduced-motion: reduce) {
+  html {
+    scroll-behavior: auto;
+  }
+
+  *,
+  *::before,
+  *::after {
+    animation-duration: 0.01ms !important;
+    animation-iteration-count: 1 !important;
+    scroll-behavior: auto !important;
+    transition-duration: 0.01ms !important;
+  }
+}
