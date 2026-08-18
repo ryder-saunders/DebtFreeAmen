@@ -1,8 +1,7 @@
 import Image from "next/image";
 
-import { siteConfig } from "@/lib/site-config";
-
 import { LeadForm } from "./lead-form";
+import { siteConfig } from "../_lib/site-config";
 
 export function Hero() {
   return (

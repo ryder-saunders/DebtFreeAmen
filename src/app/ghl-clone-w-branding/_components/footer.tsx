@@ -1,6 +1,6 @@
 import Image from "next/image";
 
-import { siteConfig } from "@/lib/site-config";
+import { siteConfig } from "../_lib/site-config";
 
 export function Footer() {
   return (

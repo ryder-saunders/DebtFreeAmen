@@ -5,6 +5,8 @@ type LeadPayload = {
   debtAmount?: string;
   paymentStruggleDuration?: string;
   stateOfResidence?: string;
+  combineDebt?: string;
+  takeHomePay?: string;
   firstName?: string;
   lastName?: string;
   email?: string;
@@ -49,6 +51,8 @@ export async function POST(request: Request) {
     debtAmount: cleanString(payload.debtAmount),
     paymentStruggleDuration: cleanString(payload.paymentStruggleDuration),
     stateOfResidence: cleanString(payload.stateOfResidence),
+    combineDebt: cleanString(payload.combineDebt),
+    takeHomePay: cleanString(payload.takeHomePay),
     firstName: cleanString(payload.firstName),
     lastName: cleanString(payload.lastName),
     email: cleanString(payload.email).toLowerCase(),
@@ -65,8 +69,9 @@ export async function POST(request: Request) {
   const requiredFields: Array<keyof typeof lead> = [
     "debtType",
     "debtAmount",
-    "paymentStruggleDuration",
     "stateOfResidence",
+    "combineDebt",
+    "takeHomePay",
     "firstName",
     "lastName",
     "email",

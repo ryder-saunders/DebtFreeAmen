@@ -2,9 +2,7 @@
 
 import { FormEvent, ReactNode, useMemo, useState } from "react";
 
-import { siteConfig } from "@/lib/site-config";
-import { surveyQuestions, usStates } from "@/lib/survey-questions";
-
+import { surveyQuestions, usStates } from "../_lib/survey-questions";
 import { ArrowRightIcon, CheckIcon } from "./icons";
 
 type SubmitState = "idle" | "submitting" | "success" | "error";
@@ -135,7 +133,7 @@ export function LeadForm() {
       setMessage(
         result.message ?? "Thanks. River Relief has your review request.",
       );
-      window.location.assign(siteConfig.funnel.bookingPath);
+      setData(initialData);
     } catch (error) {
       setSubmitState("error");
       setMessage(
