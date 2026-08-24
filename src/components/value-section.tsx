@@ -1,14 +1,17 @@
 import Image from "next/image";
 import type { SVGProps } from "react";
 
+import { ReviewBadges } from "@/components/review-badges";
+
 const testimonials = [
   {
     imageAlt: "River Relief client from Indianapolis, Indiana",
     imageSrc: "/brand/testimonial image/testimonial image 1.png",
     lines: [
-      { text: "Became ", strong: false },
+      { text: "I finally became ", strong: false },
       { text: "debt-free in ", strong: true },
       { text: "36 months", strong: true },
+      { text: "... Amen!", strong: false },
     ],
     location: "Indianapolis, IN",
   },
@@ -73,24 +76,7 @@ export function ValueSection() {
           ))}
         </div>
 
-        <div className="mx-auto mt-8 grid max-w-4xl grid-cols-[minmax(0,1fr)_minmax(0,1fr)] items-start gap-4 sm:gap-12">
-          <ReviewSummary
-            imageAlt="Google Reviews five star rating"
-            imageClassName="h-auto w-[140px] sm:w-[260px]"
-            imageHeight={1486}
-            imageSrc="/brand/testimonial image/google-reviews-logo-cropped.png"
-            imageWidth={3701}
-            reviewCount="1,298 Google Reviews"
-          />
-          <ReviewSummary
-            imageAlt="Trustpilot five star rating"
-            imageClassName="h-auto w-[140px] sm:w-[250px]"
-            imageHeight={631}
-            imageSrc="/brand/testimonial image/trustpilot-logo-cropped.png"
-            imageWidth={1359}
-            reviewCount="731 Trustpilot Reviews"
-          />
-        </div>
+        <ReviewBadges />
 
         <a
           className="bg-brand-blue glow-cta hover:bg-brand-grey-dark mt-8 inline-flex min-h-14 items-center justify-center rounded-[6px] px-8 text-xl font-bold text-white shadow-xl transition"
@@ -185,40 +171,5 @@ function LocationPinIcon(props: SVGProps<SVGSVGElement>) {
     >
       <path d="M12 2.25c-3.88 0-7.03 3.04-7.03 6.78 0 5.49 6.3 12.14 6.57 12.42a.65.65 0 0 0 .92 0c.27-.28 6.57-6.93 6.57-12.42 0-3.74-3.15-6.78-7.03-6.78Zm0 9.58a2.8 2.8 0 1 1 0-5.6 2.8 2.8 0 0 1 0 5.6Z" />
     </svg>
-  );
-}
-
-function ReviewSummary({
-  imageAlt,
-  imageClassName,
-  imageHeight,
-  imageSrc,
-  imageWidth,
-  reviewCount,
-}: {
-  imageAlt: string;
-  imageClassName: string;
-  imageHeight: number;
-  imageSrc: string;
-  imageWidth: number;
-  reviewCount: string;
-}) {
-  return (
-    <div className="grid min-w-0 justify-items-center text-center">
-      <Image
-        alt={imageAlt}
-        className={`${imageClassName} max-w-full`}
-        height={imageHeight}
-        loading="eager"
-        src={imageSrc}
-        width={imageWidth}
-      />
-      <p className="mt-2 text-[0.9rem] leading-tight font-normal text-black sm:text-3xl">
-        Rated 5/5 based on
-      </p>
-      <p className="mt-1 text-[0.9rem] leading-tight font-extrabold text-black sm:text-3xl">
-        {reviewCount}
-      </p>
-    </div>
   );
 }

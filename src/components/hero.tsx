@@ -46,7 +46,7 @@ export function Hero() {
               Get Started Today
             </a>
             <p className="text-sm font-semibold text-white/78">
-              See Debt Relief Options In Your Area
+              Finally Debt Free... Amen!
             </p>
             <div className="flex flex-wrap items-center justify-center gap-4">
               <Image

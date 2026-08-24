@@ -1,5 +1,7 @@
 import Image from "next/image";
 
+import { ReviewBadges } from "@/components/review-badges";
+
 const workSteps = [
   {
     body: "We negotiate directly with creditors on your behalf to cut your balances sometimes up to 50%.",
@@ -55,16 +57,7 @@ export function ProofSection() {
           ))}
         </div>
 
-        <div className="mx-auto mt-9 grid max-w-xl grid-cols-2 items-end gap-6">
-          <TrustBadge
-            alt="Google Reviews"
-            src="/brand/imported/google-reviews.webp"
-          />
-          <TrustBadge
-            alt="Trustpilot reviews"
-            src="/brand/imported/trustpilot-reviews.webp"
-          />
-        </div>
+        <ReviewBadges />
 
         <a
           className="bg-brand-blue glow-cta hover:bg-brand-grey-dark mt-8 inline-flex min-h-14 items-center justify-center rounded-[6px] px-8 text-xl font-bold text-white shadow-xl transition"
@@ -77,20 +70,5 @@ export function ProofSection() {
         </p>
       </div>
     </section>
-  );
-}
-
-function TrustBadge({ alt, src }: { alt: string; src: string }) {
-  return (
-    <div className="grid justify-items-center gap-2">
-      <Image
-        alt={alt}
-        className="h-auto w-48"
-        height={90}
-        loading="eager"
-        src={src}
-        width={280}
-      />
-    </div>
   );
 }
