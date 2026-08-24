@@ -9,15 +9,19 @@ npm install
 npm run dev
 ```
 
-## CRM Lead Delivery
+## Forth Lead Delivery
 
-The landing page form posts to `/api/leads`. Add these variables when a CRM is
-ready:
+The landing page form posts to `/api/leads`, which creates contacts in Forth CRM
+and then attempts to create a related debt record. Local secrets live in
+`.env.local`; production values should be configured in Vercel.
 
 ```bash
-CRM_WEBHOOK_URL="https://example-crm.test/leads"
-CRM_WEBHOOK_SECRET="optional-bearer-token"
+FORTH_CLIENT_ID=
+FORTH_CLIENT_SECRET=
+FORTH_API_BASE_URL=https://api.forthcrm.com/v1
+FORTH_LEAD_SOURCE="River Relief Website"
+FORTH_LEAD_CAMPAIGN="Website Leads"
 ```
 
-Without `CRM_WEBHOOK_URL`, submissions validate and return success in local
-development without forwarding anywhere.
+See `docs/forth-crm-connection.md` for field mapping and current integration
+status.

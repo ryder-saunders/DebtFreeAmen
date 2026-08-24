@@ -25,8 +25,10 @@ single-purpose landing pages, conversion forms, and CRM lead delivery.
 ## Leads
 
 - The lead form posts to `src/app/api/leads/route.ts`.
-- Configure `CRM_WEBHOOK_URL` when a CRM endpoint is ready.
-- Optional: set `CRM_WEBHOOK_SECRET`; it is sent as a bearer token.
+- Forth CRM sending lives in `src/lib/forth.ts`; keep mapping notes in
+  `docs/forth-crm-connection.md`.
+- Configure Forth credentials through `.env.local` for development and Vercel
+  environment variables for production.
 - Do not commit real CRM endpoints, API keys, or secrets.
 
 ## Before committing
@@ -37,5 +39,6 @@ Run:
 npm run format
 npm run lint
 npm run typecheck
+npm run test:forth
 npm run build
 ```

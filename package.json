@@ -8,6 +8,7 @@
     "start": "next start",
     "lint": "eslint",
     "typecheck": "tsc --noEmit",
+    "test:forth": "node scripts/forth-lead-smoke-test.mjs",
     "format": "prettier --write .",
     "format:check": "prettier --check ."
   },

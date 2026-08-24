@@ -1,5 +1,7 @@
 import { NextResponse } from "next/server";
 
+import { createForthLead } from "@/lib/forth";
+
 type LeadPayload = {
   debtType?: string;
   debtAmount?: string;
@@ -67,7 +69,6 @@ export async function POST(request: Request) {
   };
 
   const requiredFields: Array<keyof typeof lead> = [
-    "debtType",
     "debtAmount",
     "stateOfResidence",
     "combineDebt",
@@ -102,30 +103,29 @@ export async function POST(request: Request) {
     );
   }
 
-  if (!process.env.CRM_WEBHOOK_URL) {
-    console.info("CRM_WEBHOOK_URL is not configured. Lead accepted locally.", {
-      source: lead.source,
+  try {
+    const forthResult = await createForthLead({
+      combineDebt: lead.combineDebt,
+      debtAmount: lead.debtAmount,
+      email: lead.email,
+      firstName: lead.firstName,
+      lastName: lead.lastName,
+      phone: lead.phone,
+      stateOfResidence: lead.stateOfResidence,
       submittedAt: lead.submittedAt,
+      surveyId: lead.surveyId,
+      takeHomePay: lead.takeHomePay,
+      tellUsMore: lead.tellUsMore,
     });
 
     return NextResponse.json({
       message: "Thanks. River Relief has your review request.",
-      forwarded: false,
+      forwarded: true,
+      forthContactId: forthResult.contactId,
     });
-  }
+  } catch (error) {
+    console.error(error);
 
-  const response = await fetch(process.env.CRM_WEBHOOK_URL, {
-    method: "POST",
-    headers: {
-      "Content-Type": "application/json",
-      ...(process.env.CRM_WEBHOOK_SECRET
-        ? { Authorization: `Bearer ${process.env.CRM_WEBHOOK_SECRET}` }
-        : {}),
-    },
-    body: JSON.stringify(lead),
-  });
-
-  if (!response.ok) {
     return NextResponse.json(
       {
         message: "We could not send the review yet. Please call River Relief.",
@@ -133,9 +133,4 @@ export async function POST(request: Request) {
       { status: 502 },
     );
   }
-
-  return NextResponse.json({
-    message: "Thanks. River Relief has your review request.",
-    forwarded: true,
-  });
 }
